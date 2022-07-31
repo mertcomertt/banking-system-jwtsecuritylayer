@@ -1,0 +1,16 @@
+ <?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper
+	namespace="com.example.bankingsystem_dbconnection.repository.IMyBatisLogRepository">
+	<!--Saving transaction logs -->
+	<insert id="saveLog">
+		INSERT INTO logs (message) VALUES (#{message})
+	</insert>
+	<!--Selecting all transaction logs with specific id -->
+	<select id="getAccountLogs" resultType="Log">
+		SELECT * FROM logs where
+		id = #{id}
+	</select>
+</mapper>	

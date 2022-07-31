@@ -1,0 +1,40 @@
+ <?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.example.bankingsystem_dbconnection.repository.IMyBatisAccountRepository">
+	<!--Adding new account with specified parameters -->
+	<insert id="createAccount" parameterType="Account"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO accounts (name,
+		surname, email, tc, type, balance,
+		last_update_date, is_deleted,
+		user_id)
+		VALUES (#{name}, #{surname}, #{email}, #{tc}, #{type},
+		#{balance},
+		#{lastUpdated}, #{isDeleted},#{userId})
+	</insert>
+
+	<!--Getting account by given id -->
+	<select id="getAccountById" parameterType="int"
+		resultType="Account">
+		SELECT * FROM accounts WHERE id= #{id}
+	</select>
+
+	<!--Updating account by given id -->
+	<update id="updateAccountBalance" parameterType="Account">
+		UPDATE accounts
+		SET balance = #{balance}, last_update_date = #{lastUpdated}
+		WHERE id =
+		#{id}
+	</update>
+
+	<!--Deleting account by given id -->
+	<update id="deleteAccount" parameterType="Account">
+		UPDATE accounts SET
+		last_update_date = #{lastUpdated}, is_deleted =
+		#{isDeleted} WHERE id =
+		#{id}
+	</update>
+
+
+</mapper>	
